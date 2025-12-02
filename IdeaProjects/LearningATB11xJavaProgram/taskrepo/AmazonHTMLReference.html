@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Amazon.com HTML Structure Reference - Interview Prep</title>
+    <style>
+        body { font-family: 'Courier New', monospace; background: #1e1e1e; color: #d4d4d4; padding: 20px; }
+        h1 { color: #ff9900; text-align: center; }
+        h2 { color: #00bfff; border-bottom: 2px solid #00bfff; padding-bottom: 5px; }
+        .section { background: #2d2d2d; padding: 15px; margin: 15px 0; border-radius: 8px; border-left: 4px solid #ff9900; }
+        .code { background: #1a1a1a; padding: 15px; margin: 10px 0; border-radius: 5px; overflow-x: auto; }
+        .xpath { color: #98c379; font-weight: bold; }
+        .html { color: #e06c75; }
+        .comment { color: #7f848e; font-style: italic; }
+        .highlight { background: #ffff00; color: #000; padding: 2px 5px; }
+        .tip { background: #ff9900; color: #000; padding: 10px; border-radius: 5px; margin: 10px 0; }
+        table { width: 100%; border-collapse: collapse; margin: 10px 0; }
+        th, td { border: 1px solid #555; padding: 10px; text-align: left; }
+        th { background: #ff9900; color: #000; }
+    </style>
+</head>
+<body>
+
+<h1>🛒 AMAZON.COM HTML STRUCTURE REFERENCE</h1>
+<p style="text-align:center; color:#ff9900;">Print this for your interview! Contains all major element structures.</p>
+
+<!-- ═══════════════════════════════════════════════════════════════════════════ -->
+<div class="section">
+<h2>1️⃣ SEARCH BOX AREA</h2>
+
+<div class="code">
+<pre class="html">
+&lt;div id="nav-search"&gt;
+  &lt;form id="nav-search-bar-form" method="get" action="/s"&gt;
+    
+    &lt;!-- CATEGORY DROPDOWN --&gt;
+    &lt;div id="nav-search-dropdown-card"&gt;
+      &lt;select id="searchDropdownBox" class="nav-search-dropdown" name="url"&gt;
+        &lt;option selected value="search-alias=aps"&gt;All&lt;/option&gt;
+        &lt;option value="search-alias=electronics"&gt;Electronics&lt;/option&gt;
+        &lt;option value="search-alias=books"&gt;Books&lt;/option&gt;
+      &lt;/select&gt;
+    &lt;/div&gt;
+    
+    &lt;!-- SEARCH INPUT --&gt;
+    &lt;div class="nav-search-field"&gt;
+      &lt;input type="text" 
+             id="twotabsearchtextbox" 
+             name="field-keywords"
+             placeholder="Search Amazon"
+             autocomplete="off"&gt;
+    &lt;/div&gt;
+    
+    &lt;!-- SEARCH BUTTON --&gt;
+    &lt;div class="nav-search-submit"&gt;
+      &lt;input id="nav-search-submit-button" 
+             type="submit" 
+             value="Go"
+             class="nav-input"&gt;
+    &lt;/div&gt;
+    
+  &lt;/form&gt;
+&lt;/div&gt;
+</pre>
+</div>
+
+<div class="tip">
+<strong>XPaths to Remember:</strong><br>
+• Search Box: <span class="xpath">//input[@id='twotabsearchtextbox']</span><br>
+• Search Button: <span class="xpath">//input[@id='nav-search-submit-button']</span><br>
+• Category Dropdown: <span class="xpath">//select[@id='searchDropdownBox']</span>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════════════════ -->
+<div class="section">
+<h2>2️⃣ NAVIGATION BAR / HEADER</h2>
+
+<div class="code">
+<pre class="html">
+&lt;!-- LOGO --&gt;
+&lt;a id="nav-logo-sprites" href="/" class="nav-logo-link"&gt;
+  &lt;span class="nav-logo-base"&gt;&lt;/span&gt;
+&lt;/a&gt;
+
+&lt;!-- ACCOUNT & LISTS (Hover Menu) --&gt;
+&lt;a id="nav-link-accountList" href="/ap/signin"&gt;
+  &lt;span class="nav-line-1"&gt;Hello, Sign in&lt;/span&gt;
+  &lt;span class="nav-line-2"&gt;Account &amp; Lists&lt;/span&gt;
+&lt;/a&gt;
+
+&lt;!-- FLYOUT MENU (appears on hover) --&gt;
+&lt;div id="nav-flyout-accountList"&gt;
+  &lt;a href="/gp/css/homepage.html"&gt;Your Account&lt;/a&gt;
+  &lt;a href="/gp/css/order-history"&gt;Your Orders&lt;/a&gt;
+  &lt;a href="/wishlist"&gt;Your Wish List&lt;/a&gt;
+&lt;/div&gt;
+
+&lt;!-- CART --&gt;
+&lt;a id="nav-cart" href="/gp/cart/view.html"&gt;
+  &lt;span id="nav-cart-count" class="nav-cart-count"&gt;3&lt;/span&gt;
+  &lt;span class="nav-cart-text"&gt;Cart&lt;/span&gt;
+&lt;/a&gt;
+</pre>
+</div>
+
+<div class="tip">
+<strong>XPaths to Remember:</strong><br>
+• Cart: <span class="xpath">//a[@id='nav-cart']</span><br>
+• Cart Count: <span class="xpath">//span[@id='nav-cart-count']</span><br>
+• Account Menu: <span class="xpath">//a[@id='nav-link-accountList']</span><br>
+• Flyout Items: <span class="xpath">//div[@id='nav-flyout-accountList']//a</span>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════════════════ -->
+<div class="section">
+<h2>3️⃣ SEARCH RESULTS PAGE</h2>
+
+<div class="code">
+<pre class="html">
+&lt;div class="s-main-slot"&gt;
+  
+  &lt;!-- EACH SEARCH RESULT --&gt;
+  &lt;div data-component-type="s-search-result" 
+       data-asin="B0ABC123"
+       class="s-result-item"&gt;
+    
+    &lt;!-- PRODUCT IMAGE --&gt;
+    &lt;div class="s-product-image-container"&gt;
+      &lt;a class="a-link-normal s-no-outline" href="/dp/B0ABC123"&gt;
+        &lt;img class="s-image" src="product-image.jpg" alt="Product Name"&gt;
+      &lt;/a&gt;
+    &lt;/div&gt;
+    
+    &lt;!-- PRODUCT TITLE --&gt;
+    &lt;h2 class="a-size-mini"&gt;
+      &lt;a class="a-link-normal s-underline-text" href="/dp/B0ABC123"&gt;
+        &lt;span class="a-text-normal"&gt;iPhone 15 Pro Max 256GB&lt;/span&gt;
+      &lt;/a&gt;
+    &lt;/h2&gt;
+    
+    &lt;!-- RATING --&gt;
+    &lt;div class="a-row a-size-small"&gt;
+      &lt;span class="a-icon-alt"&gt;4.5 out of 5 stars&lt;/span&gt;
+      &lt;span class="a-size-base"&gt;12,345&lt;/span&gt;
+    &lt;/div&gt;
+    
+    &lt;!-- PRICE --&gt;
+    &lt;div class="a-row"&gt;
+      &lt;span class="a-price"&gt;
+        &lt;span class="a-offscreen"&gt;$1,199.00&lt;/span&gt;
+        &lt;span class="a-price-symbol"&gt;$&lt;/span&gt;
+        &lt;span class="a-price-whole"&gt;1,199&lt;/span&gt;
+        &lt;span class="a-price-fraction"&gt;00&lt;/span&gt;
+      &lt;/span&gt;
+    &lt;/div&gt;
+    
+  &lt;/div&gt;
+  
+&lt;/div&gt;
+</pre>
+</div>
+
+<div class="tip">
+<strong>XPaths to Remember:</strong><br>
+• All Results: <span class="xpath">//div[@data-component-type='s-search-result']</span><br>
+• First Result: <span class="xpath">(//div[@data-component-type='s-search-result'])[1]</span><br>
+• Product Titles: <span class="xpath">//h2//span[@class='a-text-normal']</span><br>
+• Prices: <span class="xpath">//span[@class='a-price-whole']</span><br>
+• Click Product: <span class="xpath">(//a[@class='a-link-normal s-no-outline'])[1]</span>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════════════════ -->
+<div class="section">
+<h2>4️⃣ PRODUCT DETAIL PAGE</h2>
+
+<div class="code">
+<pre class="html">
+&lt;!-- PRODUCT TITLE --&gt;
+&lt;span id="productTitle" class="a-size-large"&gt;
+  Apple iPhone 15 Pro Max, 256GB, Natural Titanium
+&lt;/span&gt;
+
+&lt;!-- PRICE --&gt;
+&lt;div id="corePrice_desktop"&gt;
+  &lt;span class="a-price aok-align-center"&gt;
+    &lt;span class="a-offscreen"&gt;$1,199.00&lt;/span&gt;
+    &lt;span class="a-price-symbol"&gt;$&lt;/span&gt;
+    &lt;span class="a-price-whole"&gt;1,199&lt;/span&gt;
+  &lt;/span&gt;
+&lt;/div&gt;
+
+&lt;!-- QUANTITY --&gt;
+&lt;select id="quantity" name="quantity"&gt;
+  &lt;option value="1"&gt;1&lt;/option&gt;
+  &lt;option value="2"&gt;2&lt;/option&gt;
+  &lt;option value="3"&gt;3&lt;/option&gt;
+&lt;/select&gt;
+
+&lt;!-- ADD TO CART --&gt;
+&lt;div id="addToCart"&gt;
+  &lt;input id="add-to-cart-button" 
+         type="submit" 
+         name="submit.add-to-cart"
+         value="Add to Cart"
+         class="a-button-input"&gt;
+&lt;/div&gt;
+
+&lt;!-- BUY NOW --&gt;
+&lt;input id="buy-now-button" 
+       type="submit" 
+       value="Buy Now"
+       class="a-button-input"&gt;
+
+&lt;!-- PRODUCT IMAGES --&gt;
+&lt;div id="imgTagWrapperId"&gt;
+  &lt;img id="landingImage" 
+       src="main-product-image.jpg"
+       alt="Product Image"&gt;
+&lt;/div&gt;
+
+&lt;!-- THUMBNAIL IMAGES --&gt;
+&lt;div id="altImages"&gt;
+  &lt;li class="imageThumbnail"&gt;
+    &lt;img src="thumbnail-1.jpg"&gt;
+  &lt;/li&gt;
+  &lt;li class="imageThumbnail"&gt;
+    &lt;img src="thumbnail-2.jpg"&gt;
+  &lt;/li&gt;
+&lt;/div&gt;
+</pre>
+</div>
+
+<div class="tip">
+<strong>XPaths to Remember:</strong><br>
+• Title: <span class="xpath">//span[@id='productTitle']</span><br>
+• Price: <span class="xpath">//span[@class='a-price-whole']</span><br>
+• Add to Cart: <span class="xpath">//input[@id='add-to-cart-button']</span><br>
+• Buy Now: <span class="xpath">//input[@id='buy-now-button']</span><br>
+• Quantity: <span class="xpath">//select[@id='quantity']</span><br>
+• Main Image: <span class="xpath">//img[@id='landingImage']</span>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════════════════ -->
+<div class="section">
+<h2>5️⃣ FILTER/REFINEMENT SIDEBAR</h2>
+
+<div class="code">
+<pre class="html">
+&lt;div id="s-refinements"&gt;
+  
+  &lt;!-- BRAND FILTER --&gt;
+  &lt;div id="brandsRefinements"&gt;
+    &lt;span&gt;Brand&lt;/span&gt;
+    &lt;ul&gt;
+      &lt;li&gt;
+        &lt;a href="/s?bbn=123&amp;rh=p_89:Apple"&gt;
+          &lt;input type="checkbox"&gt;
+          &lt;span&gt;Apple&lt;/span&gt;
+        &lt;/a&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;a href="/s?bbn=123&amp;rh=p_89:Samsung"&gt;
+          &lt;input type="checkbox"&gt;
+          &lt;span&gt;Samsung&lt;/span&gt;
+        &lt;/a&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/div&gt;
+  
+  &lt;!-- PRICE FILTER --&gt;
+  &lt;div id="priceRefinements"&gt;
+    &lt;ul&gt;
+      &lt;li&gt;
+        &lt;a href="..."&gt;Under $25&lt;/a&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;a href="..."&gt;$25 to $50&lt;/a&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/div&gt;
+  
+  &lt;!-- RATING FILTER --&gt;
+  &lt;div id="reviewsRefinements"&gt;
+    &lt;a href="..."&gt;
+      &lt;i class="a-icon a-icon-star-medium a-star-medium-4"&gt;&lt;/i&gt;
+      &lt;span&gt;&amp; Up&lt;/span&gt;
+    &lt;/a&gt;
+  &lt;/div&gt;
+  
+&lt;/div&gt;
+</pre>
+</div>
+
+<div class="tip">
+<strong>XPaths to Remember:</strong><br>
+• Brand by Name: <span class="xpath">//span[text()='Apple']/ancestor::a</span><br>
+• Price Range: <span class="xpath">//a[contains(text(),'$25 to $50')]</span><br>
+• 4 Star Rating: <span class="xpath">//i[contains(@class,'a-star-medium-4')]/ancestor::a</span>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════════════════ -->
+<div class="section">
+<h2>6️⃣ PAGINATION</h2>
+
+<div class="code">
+<pre class="html">
+&lt;div class="s-pagination-container"&gt;
+  &lt;span class="s-pagination-item s-pagination-previous s-pagination-disabled"&gt;
+    Previous
+  &lt;/span&gt;
+  
+  &lt;span class="s-pagination-item s-pagination-selected"&gt;1&lt;/span&gt;
+  
+  &lt;a class="s-pagination-item s-pagination-button" href="?page=2"&gt;2&lt;/a&gt;
+  &lt;a class="s-pagination-item s-pagination-button" href="?page=3"&gt;3&lt;/a&gt;
+  
+  &lt;span class="s-pagination-item s-pagination-ellipsis"&gt;...&lt;/span&gt;
+  
+  &lt;a class="s-pagination-item s-pagination-button" href="?page=20"&gt;20&lt;/a&gt;
+  
+  &lt;a class="s-pagination-item s-pagination-next" href="?page=2"&gt;
+    Next
+  &lt;/a&gt;
+&lt;/div&gt;
+</pre>
+</div>
+
+<div class="tip">
+<strong>XPaths to Remember:</strong><br>
+• Next Page: <span class="xpath">//a[contains(@class,'s-pagination-next')]</span><br>
+• Previous: <span class="xpath">//span[contains(@class,'s-pagination-previous')]</span><br>
+• Current Page: <span class="xpath">//span[contains(@class,'s-pagination-selected')]</span><br>
+• Page Number: <span class="xpath">//a[@class='s-pagination-item'][text()='5']</span>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════════════════ -->
+<div class="section">
+<h2>7️⃣ LOGIN PAGE</h2>
+
+<div class="code">
+<pre class="html">
+&lt;form name="signIn" method="post" action="/ap/signin"&gt;
+  
+  &lt;!-- EMAIL FIELD --&gt;
+  &lt;input type="email" 
+         id="ap_email" 
+         name="email" 
+         placeholder="Email or phone"
+         autocomplete="email"&gt;
+  
+  &lt;!-- CONTINUE BUTTON --&gt;
+  &lt;input id="continue" type="submit" value="Continue"&gt;
+  
+  &lt;!-- PASSWORD FIELD (Next page) --&gt;
+  &lt;input type="password" 
+         id="ap_password" 
+         name="password"
+         placeholder="Password"&gt;
+  
+  &lt;!-- SIGN IN BUTTON --&gt;
+  &lt;input id="signInSubmit" type="submit" value="Sign-In"&gt;
+  
+  &lt;!-- KEEP ME SIGNED IN --&gt;
+  &lt;input type="checkbox" name="rememberMe" id="rememberMe"&gt;
+  &lt;label for="rememberMe"&gt;Keep me signed in&lt;/label&gt;
+  
+&lt;/form&gt;
+</pre>
+</div>
+
+<div class="tip">
+<strong>XPaths to Remember:</strong><br>
+• Email: <span class="xpath">//input[@id='ap_email']</span><br>
+• Password: <span class="xpath">//input[@id='ap_password']</span><br>
+• Continue: <span class="xpath">//input[@id='continue']</span><br>
+• Sign In: <span class="xpath">//input[@id='signInSubmit']</span>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════════════════ -->
+<div class="section">
+<h2>8️⃣ AUTOCOMPLETE SUGGESTIONS</h2>
+
+<div class="code">
+<pre class="html">
+&lt;div class="autocomplete-results-container"&gt;
+  
+  &lt;div class="s-suggestion" data-keyword="iphone 15"&gt;
+    &lt;div class="s-suggestion-container"&gt;
+      &lt;span class="s-suggestion-text"&gt;iphone 15&lt;/span&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  
+  &lt;div class="s-suggestion" data-keyword="iphone 15 pro max"&gt;
+    &lt;div class="s-suggestion-container"&gt;
+      &lt;span class="s-suggestion-text"&gt;iphone 15 pro max&lt;/span&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  
+&lt;/div&gt;
+</pre>
+</div>
+
+<div class="tip">
+<strong>XPaths to Remember:</strong><br>
+• All Suggestions: <span class="xpath">//div[contains(@class,'s-suggestion')]</span><br>
+• Specific Text: <span class="xpath">//div[@data-keyword='iphone 15 pro max']</span><br>
+• Contains: <span class="xpath">//div[contains(@class,'s-suggestion')][contains(.,'pro max')]</span>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════════════════ -->
+<h2 style="color:#ff9900; text-align:center;">📊 QUICK XPATH REFERENCE TABLE</h2>
+
+<table>
+    <tr>
+        <th>Element</th>
+        <th>Primary XPath</th>
+        <th>Alternative XPath</th>
+    </tr>
+    <tr>
+        <td>Search Box</td>
+        <td>//input[@id='twotabsearchtextbox']</td>
+        <td>//input[contains(@id,'searchtextbox')]</td>
+    </tr>
+    <tr>
+        <td>Search Button</td>
+        <td>//input[@id='nav-search-submit-button']</td>
+        <td>//input[@type='submit'][@value='Go']</td>
+    </tr>
+    <tr>
+        <td>Category Dropdown</td>
+        <td>//select[@id='searchDropdownBox']</td>
+        <td>//select[contains(@class,'nav-search')]</td>
+    </tr>
+    <tr>
+        <td>Cart</td>
+        <td>//a[@id='nav-cart']</td>
+        <td>//a[contains(@href,'cart')]</td>
+    </tr>
+    <tr>
+        <td>Cart Count</td>
+        <td>//span[@id='nav-cart-count']</td>
+        <td>//span[contains(@class,'nav-cart-count')]</td>
+    </tr>
+    <tr>
+        <td>Product Title</td>
+        <td>//span[@id='productTitle']</td>
+        <td>//h1[contains(@class,'product')]</td>
+    </tr>
+    <tr>
+        <td>Add to Cart</td>
+        <td>//input[@id='add-to-cart-button']</td>
+        <td>//input[@name='submit.add-to-cart']</td>
+    </tr>
+    <tr>
+        <td>Price</td>
+        <td>//span[@class='a-price-whole']</td>
+        <td>//span[contains(@class,'a-price')]</td>
+    </tr>
+    <tr>
+        <td>First Result</td>
+        <td>(//div[@data-component-type='s-search-result'])[1]</td>
+        <td>(//div[contains(@class,'s-result-item')])[1]</td>
+    </tr>
+    <tr>
+        <td>Next Page</td>
+        <td>//a[contains(@class,'s-pagination-next')]</td>
+        <td>//a[text()='Next']</td>
+    </tr>
+</table>
+
+<div style="text-align:center; margin-top:30px; padding:20px; background:#ff9900; color:#000; border-radius:10px;">
+    <h2>🎯 GOOD LUCK WITH YOUR INTERVIEW! 🎯</h2>
+    <p><strong>Remember:</strong> ID > Name > CSS > XPath (Locator Priority)</p>
+    <p>Always use <code>contains()</code> for dynamic elements!</p>
+</div>
+
+</body>
+</html>
