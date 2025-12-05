@@ -32,6 +32,17 @@ mvn exec:java -Dexec.args="laptop"
 - The script defaults to headless mode. To observe a real browser session, change the `headless` argument inside `AmazonProductAutomation#run`.
 - A screenshot is written to `target/screenshots/product-details.png` after the product CTA is detected.
 
+## Run the TestNG flow
+
+The same journey is available as a TestNG test case (`org.example.AmazonTest`):
+
+```bash
+mvn test -Dtest=AmazonTest
+```
+
+- Screenshots from this test are saved under `amazon-automation/screenshots/ProductPage.png`.
+- Update the locator constants in `AmazonTest` if your Amazon locale renders different identifiers.
+
 ## Implementation notes
 
 - `AmazonProductAutomation` centralizes each workflow step (`navigateToHomePage`, `searchForProduct`, `openFirstResult`, `validateProductDetailPage`, `takeScreenshot`) to keep the flow readable.
